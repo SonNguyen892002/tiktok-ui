@@ -14,17 +14,15 @@ import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
-import routesConfig from '~/config/routes';
+import config from '~/config';
 import Button from '~/component/Button';
 import styles from './Header.module.scss';
-import Search from '../Search';
 import images from '~/assets/images';
 import Menu from '~/component/Popper/Menu';
 import { InboxIcon, MessageIcon, UploadIcon } from '~/component/Icons';
 import Image from '~/component/Image';
-
+import Search from '../Search';
 const cx = classNames.bind(styles);
-
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
@@ -32,66 +30,6 @@ const MENU_ITEMS = [
         children: {
             title: 'Language',
             data: [
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
                 {
                     type: 'language',
                     code: 'en',
@@ -115,10 +53,8 @@ const MENU_ITEMS = [
         title: 'Keyboard shortcuts',
     },
 ];
-
 function Header() {
     const currentUser = true;
-
     // Handle logic
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
@@ -128,7 +64,6 @@ function Header() {
             default:
         }
     };
-
     const userMenu = [
         {
             icon: <FontAwesomeIcon icon={faUser} />,
@@ -153,16 +88,14 @@ function Header() {
             separate: true,
         },
     ];
-
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={routesConfig.home} className={cx('logo-link')}>
+                <Link to={config.routes.home} className={cx('logo-link')}>
                     <img src={images.logo} alt="Tiktok" />
                 </Link>
 
                 <Search />
-
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
@@ -189,12 +122,11 @@ function Header() {
                             <Button primary>Log in</Button>
                         </>
                     )}
-
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
                             <Image
                                 className={cx('user-avatar')}
-                                src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
+                                src="https://files.fullstack.edu.vn/f8-prod/user_avatars/1/623d4b2d95cec.png"
                                 alt="Nguyen Van A"
                             />
                         ) : (
@@ -208,5 +140,4 @@ function Header() {
         </header>
     );
 }
-
 export default Header;
